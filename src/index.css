@@ -975,9 +975,9 @@ td.border4 {
   border-bottom: 0.0625rem solid #ccc;
   border: 1px solid gray;
 }
-td.border5 {
+td.border5 { 
   width: 33%;
-  text-align: center;
+  text-align: center; 
   vertical-align: middle;
   padding: 0.3125rem;
   border-right: 0.0625rem solid #ccc 1px;
