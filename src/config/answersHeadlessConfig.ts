@@ -1,12 +1,19 @@
 
+export const googleMapsConfig =  {
+  centerLatitude: 38.047989,
+  centerLongitude:-84.501640,
+  // googleMapsApiKey: "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"  
+  googleMapsApiKey: "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18" 
+}; 
+
 export const AnswerExperienceConfig = {
-  limit:3,
+  limit:7,
   locale: "en",
   apiKey : "06fd5ba2b2a505cc0d620efe004958a4",
   verticalKey : "locations",
   experienceKey : "independent-financial",
   experienceVersion: "STAGING",
-  locationRadius: 804672,
+  locationRadius: 100000,
   sessionTrackingEnabled: true,
   endpoints: {
     universalSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/query",

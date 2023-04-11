@@ -23,6 +23,7 @@ import {
   AnalyticsScopeProvider,
 } from "@yext/pages/components";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
+import Footer from "../components/layouts/footer";
 
 
 
@@ -193,6 +194,7 @@ const Locator: Template<TemplateRenderProps>= ({
       </PageLayout>
       </AnalyticsScopeProvider>
       </AnalyticsProvider>
+      <Footer footer={_site}/>
     </>
   );
 };
