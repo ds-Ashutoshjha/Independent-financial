@@ -156,7 +156,9 @@ const Locator: Template<TemplateRenderProps>= ({
     filterSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/filtersearch",
    
   }
-  var Api="AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";  
+  var Api="AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"; 
+  console.log('Narendra', _site) ;
+
   return (
     <>
     <JsonLd<locator>
@@ -176,6 +178,7 @@ const Locator: Template<TemplateRenderProps>= ({
         {" "}
         <AnalyticsScopeProvider name={""}>
       <PageLayout global={_site}>
+       
         <SearchHeadlessProvider
           experienceKey={AnswerExperienceConfig.experienceKey}
           locale={AnswerExperienceConfig.locale}

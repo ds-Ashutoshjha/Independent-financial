@@ -187,6 +187,10 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   };
 
+
+ 
+
+
   const handleInputValue = () => {
     setInputValue("");
   };
@@ -308,6 +312,16 @@ const SearchLayout = (props: any): JSX.Element => {
       getCoordinates(Search);
     }
   };
+
+  const searchbybranch = () => {
+    getCoordinates("branch");
+  };
+
+  const searchbyatm = () => {
+    getCoordinates("atm");
+  };
+
+
 
 
 
@@ -439,13 +453,13 @@ const SearchLayout = (props: any): JSX.Element => {
             <h1 className="">{StaticData.FindLocationtext}</h1>
           </div>
           <div className="loBtn flex">
-            {c_locatorButton.map((data: any) => {
+            {c_locatorButton.map((data: any,index:number) => {
               return (
                 <>
 
                     
 
-                  <a href= {data?.link}
+                  <a onClick={index==0? searchbybranch:searchbyatm} href="javascript:void(0)"
                     className="Link button-red cursor-pointer mr-2"
                     type="button"
                     style={{ unicodeBidi: "bidi-override", direction: "ltr" }}
