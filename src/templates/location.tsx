@@ -120,21 +120,22 @@ export const config: TemplateConfig = {
  * take on the form: featureName/entityId
  */
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  var url = "";
-  var name: any = document.name.toLowerCase();
-  var string: any = name.toString();;
-  let result: any = string.replaceAll(" ", "-");
-  document.dm_directoryParents?.map((result: any, i: number) => {
-    if (i > 0) {
-      url += result.slug + "/"
-    }
-  })
-  if (!document.slug) {
-    url += `${result.slug}`;
-  } else {
-    url += `${document.slug.toString()}`;
-  }
-  return url +".html";
+  // var url = "";
+  // var name: any = document.name.toLowerCase();
+  // var string: any = name.toString();;
+  // let result: any = string.replaceAll(" ", "-");
+  // document.dm_directoryParents.map((result: any, i: Number) => {
+  //   if (i > 0) {
+  //     url += result.slug + "/"
+  //   }
+  // })
+  // if (!document.slug) {
+  //   url += `${result}.html`;
+  // } else {
+  //   url += `${document.slug.toString()}.html`;
+  // }
+
+  return document.id;
 };
 /**
  * Defines a list of paths which will redirect to the path created by getPath.
