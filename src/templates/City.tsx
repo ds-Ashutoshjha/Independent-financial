@@ -229,7 +229,7 @@ const City: Template<TemplateRenderProps> = ({
   var instagramHandle;
   var twitterHandle;
   var c_tikTok;
-  var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
+  var sortedChildren = dm_directoryChildren?.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
     return a < b ? -1 : a > b ? 1 : 0;
