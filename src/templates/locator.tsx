@@ -197,7 +197,7 @@ const Locator: Template<TemplateRenderProps>= ({
       </PageLayout>
       </AnalyticsScopeProvider>
       </AnalyticsProvider>
-      <Footer footer={_site}/>
+      {/* <Footer footer={_site}/> */}
     </>
   );
 };

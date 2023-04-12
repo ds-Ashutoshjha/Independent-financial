@@ -1,7 +1,11 @@
 import { useSearchActions } from "@yext/search-headless-react";
 import { useEffect, useState, useRef } from "react";
 import * as React from "react";
-import { LocationBias, Pagination, StandardFacets } from "@yext/search-ui-react";
+import {
+  LocationBias,
+  Pagination,
+  StandardFacets,
+} from "@yext/search-ui-react";
 
 import { Location } from "../../types/search/locations";
 import LocationCard from "./LocationCard";
@@ -16,14 +20,9 @@ import $ from "jquery";
 import Banner from "../locationDetail/banner";
 import LoadingSpinner from "../commons/LoadingSpinner";
 
-import {
-  Matcher,
-  SelectableFilter,
-} from "@yext/search-headless-react";
+import { Matcher, SelectableFilter } from "@yext/search-headless-react";
 
-import {
-  googleMapsConfig,
-} from "../../config/answersHeadlessConfig";
+import { googleMapsConfig } from "../../config/answersHeadlessConfig";
 
 import {
   breadcrumbhome,
@@ -77,8 +76,6 @@ const SearchLayout = (props: any): JSX.Element => {
   const [filterValue, setFilterValue] = useState([]);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [facetData, setFacetData] = useState("");
-
-
 
   var searchKey: any;
   var target;
@@ -187,10 +184,6 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   };
 
-
- 
-
-
   const handleInputValue = () => {
     setInputValue("");
   };
@@ -258,11 +251,9 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   }, []);
 
-
-
   const Findinput2 = () => {
     let Search = inputRef.current?.value || "";
-    let locationHub: any = []
+    let locationHub: any = [];
     if (Search.length == 0) {
       const bounds = new google.maps.LatLngBounds();
       bounds.extend({
@@ -302,7 +293,7 @@ const SearchLayout = (props: any): JSX.Element => {
           locationHub.push(facet_core);
         }
       } else {
-        locationHub = []
+        locationHub = [];
       }
       searchActions.setStaticFilters(locationHub);
 
@@ -321,11 +312,8 @@ const SearchLayout = (props: any): JSX.Element => {
     getCoordinates("atm");
   };
 
-
-
-
-
-  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
+  const [autocomplete, setAutocomplete] =
+    useState<google.maps.places.Autocomplete>();
 
   useEffect(() => {
     if (googleLib && typeof google.maps === "object") {
@@ -333,7 +321,7 @@ const SearchLayout = (props: any): JSX.Element => {
       let options: any = {
         options: {
           types: ["geocode"],
-          componentRestrictions:  { country: "USA"},
+          componentRestrictions: { country: "USA" },
           strictBounds: false,
           fields: ["address_components", "geometry", "icon", "name"],
         },
@@ -417,62 +405,60 @@ const SearchLayout = (props: any): JSX.Element => {
 
   return (
     <>
-     <Wrapper
-      apiKey={googleMapsConfig.googleMapsApiKey}
-      libraries={["places", "geometry"]}
-    >
-      {/* {loader} */}
+      <Wrapper
+        apiKey={googleMapsConfig.googleMapsApiKey}
+        libraries={["places", "geometry"]}
+      >
+        {/* {loader} */}
 
-                    <StandardFacets
-                          customCssClasses={{container: "filter-items" }}
-                          defaultExpanded={false}
-                        ></StandardFacets> 
+        <StandardFacets
+          customCssClasses={{ container: "filter-items" }}
+          defaultExpanded={false}
+        ></StandardFacets>
 
-      <div className="breadcrumb">
-        <div className="container-custom">
-          <ul>
-            <li>
-              <a href="#" className="home">
-                {" "}
-                Home
-              </a>
-            </li>
-            <li>{StaticData.locator_breadcrumb}</li>
-          </ul>
+        <div className="breadcrumb">
+          <div className="container-custom">
+            <ul>
+              <li>
+                <a href="#" className="home">
+                  {" "}
+                  Home
+                </a>
+              </li>
+              <li>{StaticData.locator_breadcrumb}</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="locator-main">
-        {allowlocation.length > 0 ? (
-          <div className="for-allow">{allowlocation}</div>
-        ) : (
-          ""
-        )}
+        <div className="locator-main">
+          {allowlocation.length > 0 ? (
+            <div className="for-allow">{allowlocation}</div>
+          ) : (
+            ""
+          )}
 
-        <div className="search-bx">
-          <div className="location-with-filter">
-            <h1 className="">{StaticData.FindLocationtext}</h1>
-          </div>
-          <div className="loBtn flex">
-            {c_locatorButton.map((data: any,index:number) => {
-              return (
-                <>
-
-                    
-
-                  <a onClick={index==0? searchbybranch:searchbyatm} href="javascript:void(0)"
-                    className="Link button-red cursor-pointer mr-2"
-                    type="button"
-                    style={{ unicodeBidi: "bidi-override", direction: "ltr" }}
-                  >
-                 {data?.label}
-                  
-                  </a>
-                </>
-              );
-            })}
-          </div>
-          <div className="search-field">
-            {/* <FilterSearch
+          <div className="search-bx">
+            <div className="location-with-filter">
+              <h1 className="">{StaticData.FindLocationtext}</h1>
+            </div>
+            <div className="loBtn flex">
+              {c_locatorButton.map((data: any, index: number) => {
+                return (
+                  <>
+                    <a
+                      onClick={index == 0 ? searchbybranch : searchbyatm}
+                      href="javascript:void(0)"
+                      className="Link button-red cursor-pointer mr-2"
+                      type="button"
+                      style={{ unicodeBidi: "bidi-override", direction: "ltr" }}
+                    >
+                      {data?.label}
+                    </a>
+                  </>
+                );
+              })}
+            </div>
+            <div className="search-field">
+              {/* <FilterSearch
               ref={filterRef}
               displaymsg={displaymsg}
               setDisplaymsg={setDisplaymsg}
@@ -516,131 +502,145 @@ const SearchLayout = (props: any): JSX.Element => {
               handleSetUserShareLocation={handleSetUserShareLocation}
             /> */}
 
-<input
-                        id="pac-input"
-                        type="text"
-                        ref={inputRef}
-                        placeholder="Enter postal code, city ..."
-                        className="text-sm outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 search_input FilterSearchInput pac-target-input"
-                        onChange={() => Findinput2()}
-                        onKeyDown={(evt) => {
-                          if (
-                            evt.key === "Backspace" ||
-                            evt.key === "x" ||
-                            evt.key === "Delete"
-                          ) {
-                            Findinput2();
-                          }
-                        }}
-                      />
-
-            <button
-              className="search-btn"
-              aria-label="Search bar icon"
-              id="search-location-button"
-              onClick={Findinput}
-            >
-              <span dangerouslySetInnerHTML={{ __html: search_icn }} />
-            </button>
-          </div>
-
-          <div className="fliter-sec">
-            <button
-              className="useMyLocation"
-              title="Search using your current location!"
-              id="useLocation"
-              onClick={onClick}
-            >
-              <span
-                className="icon"
-                dangerouslySetInnerHTML={{ __html: UseMylocationsvg }}
+              <input
+                id="pac-input"
+                type="text"
+                ref={inputRef}
+                placeholder="Enter postal code, city ..."
+                className="text-sm outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 search_input FilterSearchInput pac-target-input"
+                onChange={() => Findinput2()}
+                onKeyDown={(evt) => {
+                  if (
+                    evt.key === "Backspace" ||
+                    evt.key === "x" ||
+                    evt.key === "Delete"
+                  ) {
+                    Findinput2();
+                  }
+                }}
               />
 
-              <span className="underline hover:no-underline">
-                {" "}
-                {StaticData.Usemylocation}
-              </span>
-            </button>
+              <button
+                className="search-btn"
+                aria-label="Search bar icon"
+                id="search-location-button"
+                onClick={Findinput}
+              >
+                <span dangerouslySetInnerHTML={{ __html: search_icn }} />
+              </button>
+            </div>
 
-            <ResultsCount
-              customCssClasses={{ container: "mx-2 my-0 text-dark-gray" }}
+            <div className="fliter-sec">
+              <button
+                className="useMyLocation"
+                title="Search using your current location!"
+                id="useLocation"
+                onClick={onClick}
+              >
+                <span
+                  className="icon"
+                  dangerouslySetInnerHTML={{ __html: UseMylocationsvg }}
+                />
+
+                <span className="underline hover:no-underline">
+                  {" "}
+                  {StaticData.Usemylocation}
+                </span>
+              </button>
+
+              <ResultsCount
+                customCssClasses={{ container: "mx-2 my-0 text-white" }}
+              />
+            </div>
+          </div>
+          <div className="mobile-btns">
+            <div className="button-bx">
+              <a
+                className="btn listBtn"
+                href="javascript:void(0);"
+                onClick={() => {
+                  document.body.classList.remove("mapView");
+                }}
+              >
+                {" "}
+                List View
+              </a>
+              <a
+                className="btn mapBtn"
+                href="javascript:void(0);"
+                onClick={addClass}
+              >
+                {" "}
+                Map View
+              </a>
+            </div>
+          </div>
+          <div className=" map-section ">
+            <GoogleMaps
+              apiKey={googleApikey}
+              centerLatitude={centerLatitude}
+              centerLongitude={centerLongitude}
+              check={true}
+              defaultZoom={mapzoom}
+              showEmptyMap={true}
             />
           </div>
-        </div>
-        <div className="mobile-btns">
-          <div className="button-bx">
-            <a
-              className="btn listBtn"
-              href="javascript:void(0);"
-              onClick={() => {
-                document.body.classList.remove("mapView");
-              }}
-            >
-              {" "}
-              List View
-            </a>
-            <a
-              className="btn mapBtn"
-              href="javascript:void(0);"
-              onClick={addClass}
-            >
-              {" "}
-              Map View
-            </a>
-          </div>
-        </div>
-        <div className=" map-section ">
-          <GoogleMaps
-            apiKey={googleApikey}
-            centerLatitude={centerLatitude}
-            centerLongitude={centerLongitude}
-            check={true}
-            defaultZoom={mapzoom}
-            showEmptyMap={true}
-          />
-        </div>
 
-        <div className="left-listing">
-          <PerfectScrollbar>
-            <div>
-              <VerticalResults
-                displayAllOnNoResults={false}
-                CardComponent={LocationCard}
-                locationResults={locationinbuit}
+          <div className="left-listing">
+            <PerfectScrollbar>
+              <div>
+                <VerticalResults
+                  displayAllOnNoResults={false}
+                  CardComponent={LocationCard}
+                  locationResults={locationinbuit}
+                  customCssClasses={{
+                    container:
+                      "result-list flex flex-col scroll-smooth  overflow-auto",
+                  }}
+                  // CardComponent={LocationCard}
+                />
+
+                {locationinbuit && locationinbuit.length <= 0 ? (
+                  <div className="browse-dir">
+                    <a className="underline " href="/gb.html">
+                      Use the search above or{" "}
+                      <span className="font-second-main-font">
+                        {" "}
+                        browse our directory
+                      </span>
+                    </a>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {/* <div className="button-bx">
+                  <ViewMore
+                    className={
+                      " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
+                    }
+                    idName={"view-more-button"}
+                    buttonLabel={"View More"}
+                  />
+                </div> */}
+
+                  {/* <ViewMore
+                className={"button view-more"}
+                idName={"view-more-button"}
+                buttonLabel={"Load More"}
+              /> */}
+
+              <Pagination
                 customCssClasses={{
-                  container:
-                    "result-list flex flex-col scroll-smooth  overflow-auto",
+                  paginationContainer: "pagination-conatiner",
+                  leftIconContainer: "left-container",
+                  rightIconContainer: "right-container",
+                  selectedLabel: "selectedLabel"
                 }}
-                // CardComponent={LocationCard}
-              />
-
-              {locationinbuit && locationinbuit.length <= 0 ? (
-                <div className="browse-dir">
-                  <a className="underline " href="/gb.html">
-                    Use the search above or{" "}
-                    <span className="font-second-main-font">
-                      {" "}
-                      browse our directory
-                    </span>
-                  </a>
-                </div>
-              ) : (
-                ""
-              )}
-              <div className="button-bx">
-                <ViewMore
-                  className={
-                    " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
-                  }
-                  idName={"view-more-button"}
-                  buttonLabel={"View More"}
                 />
               </div>
-            
-            </div>
-          </PerfectScrollbar>
+            </PerfectScrollbar>
+          </div>
         </div>
-      </div>
       </Wrapper>
     </>
   );

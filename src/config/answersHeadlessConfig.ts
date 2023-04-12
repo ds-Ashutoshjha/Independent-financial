@@ -7,7 +7,7 @@ export const googleMapsConfig =  {
 }; 
 
 export const AnswerExperienceConfig = {
-  limit:10,
+  limit:3,
   locale: "en",
   apiKey : "06fd5ba2b2a505cc0d620efe004958a4",
   verticalKey : "locations",

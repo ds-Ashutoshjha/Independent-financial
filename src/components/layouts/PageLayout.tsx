@@ -25,7 +25,7 @@ type Props = {
         <Header c_headerLogo ={global?.c_headerLogo} c_headerTopMenus ={global?.c_headerTopMenus} c_headerMainMenus = {global?.c_headerMainMenus}/>
       
                 {children}
-                {/* <Footer footer={global} /> */} 
+                <Footer footer={global} /> 
       
         </>
     );

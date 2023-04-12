@@ -938,7 +938,6 @@ console.log('c_featureSection', c_featureSection)
                 {console.log('mainPhone', mainPhone)}
               </div>
             </div>
-            <Footer footer={_site}/>
           </PageLayout>
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
