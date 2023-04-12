@@ -236,7 +236,7 @@ const City: Template<TemplateRenderProps> = ({
   });
 
   let slugString = "";
-  document.dm_directoryParents.forEach((e: any) => {
+  document.dm_directoryParents?.forEach((e: any) => {
     slugString += e.slug + "/";
   });
 
