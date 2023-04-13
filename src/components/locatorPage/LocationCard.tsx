@@ -9,8 +9,12 @@ import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
 
+// const metersToMiles = (meters: number) => {
+//   const miles = meters * 0.000621371;
+//   return miles.toFixed(2);
+// };
 const metersToMiles = (meters: number) => {
-  const miles = meters * 0.000621371;
+  const miles = meters * 0.001;
   return miles.toFixed(2);
 };
 let array = [];
@@ -90,7 +94,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
               {typeof result.distance != "undefined" ? (
                 <div className="distance">
                   {metersToMiles(result.distance)}{" "}
-                  <span>{StaticData.miles}</span>
+                  <span>{StaticData.kilometer}</span>
                 </div>
               ) : (
                 ""

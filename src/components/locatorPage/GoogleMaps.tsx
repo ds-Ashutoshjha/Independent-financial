@@ -119,7 +119,8 @@ function UnwrappedGoogleMaps({
 
   const refLocationResults = useRef({});
 
-  const locationResults = useSearchState(state => state.vertical?.results) || [];
+  // const locationResults = useSearchState(state => state.vertical?.results) || [];
+  const locationResults = useFetchResults() || [];
   refLocationResults.current = locationResults;
 
   locationResults.length > 0

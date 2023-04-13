@@ -44,6 +44,7 @@ import { AnswerExperienceConfig } from "../../config/answersHeadlessConfig";
 import Footer from "../layouts/footer";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
+
 var params1: any = { latitude: center_latitude, longitude: center_longitude };
 var mapzoom = 8;
 var centerLatitude = center_latitude;
@@ -94,6 +95,20 @@ const SearchLayout = (props: any): JSX.Element => {
           params1 = params;
           SetNewparam(params1);
           mapzoom = 3;
+          const locationFilter: SelectableFilter = {
+            selected: true,
+            fieldId: "builtin.location",
+            value: {
+              lat: params.latitude,
+              lng: params.longitude,
+              radius: 100000,
+            },
+  
+            matcher: Matcher.Near,
+          };
+  
+          searchActions.setOffset(0)
+          searchActions.setStaticFilters([locationFilter]);
           searchActions.setUserLocation(params1);
           searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
           searchActions.executeVerticalQuery();
@@ -105,11 +120,23 @@ const SearchLayout = (props: any): JSX.Element => {
       );
     }
     params1 = {
-      latitude: 30.55435,
-      longitude: -91.03677,
+      latitude: 33.1,
+      longitude: -96.41,
     };
     SetNewparam(params1);
     // mapzoom=8;
+    const locationFilter: SelectableFilter = {
+      selected: true,
+      fieldId: "builtin.location",
+      value: {
+        lat: params1.latitude,
+        lng: params1.longitude,
+        radius: 200000,
+      },
+
+      matcher: Matcher.Near,
+    };
+    searchActions.setStaticFilters([locationFilter]);
     searchActions.setUserLocation(params1);
     searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
     searchActions.executeVerticalQuery();
@@ -205,6 +232,7 @@ const SearchLayout = (props: any): JSX.Element => {
     searchActions.setUserLocation(params1);
     searchActions.setOffset(0);
     searchActions.executeVerticalQuery();
+    searchActions.setFacets()
   }
 
   const c_locatorButton =
@@ -411,10 +439,7 @@ const SearchLayout = (props: any): JSX.Element => {
       >
         {/* {loader} */}
 
-        <StandardFacets
-          customCssClasses={{ container: "filter-items" }}
-          defaultExpanded={false}
-        ></StandardFacets>
+       
 
         <div className="breadcrumb">
           <div className="container-custom">
@@ -441,7 +466,11 @@ const SearchLayout = (props: any): JSX.Element => {
               <h1 className="">{StaticData.FindLocationtext}</h1>
             </div>
             <div className="loBtn flex">
-              {c_locatorButton.map((data: any, index: number) => {
+                       <StandardFacets
+          customCssClasses={{ container: "filter-items" }}
+          defaultExpanded={true}
+        ></StandardFacets>
+              {/* {c_locatorButton.map((data: any, index: number) => {
                 return (
                   <>
                     <a
@@ -455,7 +484,8 @@ const SearchLayout = (props: any): JSX.Element => {
                     </a>
                   </>
                 );
-              })}
+              })} */}
+      
             </div>
             <div className="search-field">
               {/* <FilterSearch
@@ -553,6 +583,7 @@ const SearchLayout = (props: any): JSX.Element => {
               />
             </div>
           </div>
+    
           <div className="mobile-btns">
             <div className="button-bx">
               <a
