@@ -31,7 +31,8 @@ const useFetchResults = () => {
          mapLocations.push(location);
       }    
     }
-  }else{
+  }
+  else{
     for (let i = 0; i < Alternateresult.length; i++) {
       const location = Alternateresult[i];
       // console.log('location',location.id);

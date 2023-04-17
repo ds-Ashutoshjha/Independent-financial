@@ -82,6 +82,7 @@ const SearchLayout = (props: any): JSX.Element => {
   var target;
 
   var firstTimeRunners = true;
+ 
 
   const FirstLoad = () => {
     setCheck(true);
@@ -131,7 +132,7 @@ const SearchLayout = (props: any): JSX.Element => {
       value: {
         lat: params1.latitude,
         lng: params1.longitude,
-        radius: 200000,
+        radius: 100000,
       },
 
       matcher: Matcher.Near,
@@ -331,13 +332,43 @@ const SearchLayout = (props: any): JSX.Element => {
       getCoordinates(Search);
     }
   };
+  const [data, setData] = useState([]);
 
   const searchbybranch = () => {
-    getCoordinates("branch");
-  };
+
+        getCoordinates("branch");
+        useEffect(() => {
+          const apiUrl = '06fd5ba2b2a505cc0d620efe004958a4';
+          const apiKey = 'independent-financial';
+          const filteredApiKey = `branch ${apiKey}`;
+          fetch(apiUrl, {
+            headers: {
+              'Authorization': filteredApiKey,
+              'User-Agent': 'searchlayout',
+              
+            }
+          })
+          .then(response => response.json())
+          .then(data => setData(data))
+          .catch(error => console.error(error));
+      }, []);
+      return (
+        <div>
+          {filteredApiKey}
+        </div>
+      );
+    }
+
+    
+
+
+ 
 
   const searchbyatm = () => {
     getCoordinates("atm");
+
+  
+
   };
 
   const [autocomplete, setAutocomplete] =
@@ -430,6 +461,7 @@ const SearchLayout = (props: any): JSX.Element => {
       }
     };
   }, [googleLib]);
+  
 
   return (
     <>
@@ -440,7 +472,7 @@ const SearchLayout = (props: any): JSX.Element => {
         {/* {loader} */}
 
        
-
+       
         <div className="breadcrumb">
           <div className="container-custom">
             <ul>
@@ -466,17 +498,20 @@ const SearchLayout = (props: any): JSX.Element => {
               <h1 className="">{StaticData.FindLocationtext}</h1>
             </div>
             <div className="loBtn flex">
-                       <StandardFacets
+                       {/* <StandardFacets
           customCssClasses={{ container: "filter-items" }}
           defaultExpanded={true}
-        ></StandardFacets>
-              {/* {c_locatorButton.map((data: any, index: number) => {
+          
+></StandardFacets> */}
+
+
+  {c_locatorButton.map((data: any, index: number) => {
                 return (
                   <>
                     <a
                       onClick={index == 0 ? searchbybranch : searchbyatm}
                       href="javascript:void(0)"
-                      className="Link button-red cursor-pointer mr-2"
+                      className={index == 0 ? 'Link button-red cursor-pointer mr-2 searchbranch' : 'Link button-red cursor-pointer mr-2 searchatm'}
                       type="button"
                       style={{ unicodeBidi: "bidi-override", direction: "ltr" }}
                     >
@@ -484,7 +519,10 @@ const SearchLayout = (props: any): JSX.Element => {
                     </a>
                   </>
                 );
-              })} */}
+              })} 
+           
+               
+              
       
             </div>
             <div className="search-field">
@@ -530,6 +568,78 @@ const SearchLayout = (props: any): JSX.Element => {
               ]}
               handleInputValue={handleInputValue}
               handleSetUserShareLocation={handleSetUserShareLocation}
+            />
+
+              {/* <input
+                id="pac-input"
+                type="text"
+                ref={inputRef}
+                placeholder="Enter postal code, city ..."
+                className="text-sm outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 search_input FilterSearchInput pac-target-input"
+                onChange={() => Findinput2()}
+                onKeyDown={(evt) => {
+                  if (
+                    evt.key === "Backspace" ||
+                    evt.key === "x" ||
+                    evt.key === "Delete"
+                  ) {
+                    Findinput2();
+                  }
+                }}
+              /> */}
+
+              {/* <button
+                className="search-btn"
+                aria-label="Search bar icon"
+                id="search-location-button"
+                onClick={Findinput}
+              >
+                <span dangerouslySetInnerHTML={{ __html: search_icn }} />
+              </button> */}
+            </div>
+
+            <div className="search-field">
+              {/* <FilterSearch
+              ref={filterRef}
+              displaymsg={displaymsg}
+              setDisplaymsg={setDisplaymsg}
+              customCssClasses={{
+                filterSearchContainer: "m-2 w-full",
+                inputElement: "FilterSearchInput pr-[90px]",
+                optionsContainer: "options",
+              }}
+              inputvalue={inputvalue}
+              setSearchInputValue={setInputValue}
+              params={params1}
+              searchOnSelect={true}
+              searchFields={[
+                // {
+                //   entityType: "location",
+                //   fieldApiName: "address.line1",
+                // },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.postalCode",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "name",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.city",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.region",
+                },
+                // {
+                //   entityType: "location",
+                //   fieldApiName: "address.countryCode",
+                // },
+              ]}
+              handleInputValue={handleInputValue}
+              handleSetUserShareLocation={handleSetUserShareLocation}
             /> */}
 
               <input
@@ -559,6 +669,7 @@ const SearchLayout = (props: any): JSX.Element => {
                 <span dangerouslySetInnerHTML={{ __html: search_icn }} />
               </button>
             </div>
+
 
             <div className="fliter-sec">
               <button
