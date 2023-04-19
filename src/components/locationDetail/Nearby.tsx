@@ -73,6 +73,11 @@ export default function Nearby(props: any) {
                         data-ya-track={`${location.data.name}`}
                         eventName={`${location.data.name}`}
                         rel="noopener noreferrer">{location.data.name}</Link></h2>
+                          {typeof location.distance != "undefined" ?
+                        <div className="nearby-distance">
+                          {metersToMiles(location.distance)} <span>miles</span>
+                        </div>
+                        : ''}
 
                     </div>
                     <div className="icon-row content-col">{props.mainPhones}</div>

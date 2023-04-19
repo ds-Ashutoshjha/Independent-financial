@@ -22,8 +22,9 @@ type Props = {
 
     return (
         <>
-        <Header c_headerLogo ={global?.c_headerLogo} c_headerTopMenus ={global?.c_headerTopMenus} c_headerMainMenus = {global?.c_headerMainMenus}/>
+        {/* <Header c_headerLogo ={global?.c_headerLogo} c_headerTopMenus ={global?.c_headerTopMenus} c_headerMainMenus = {global?.c_headerMainMenus}/> */}
       
+      <Header header ={global}/>
                 {children}
                 <Footer footer={global} /> 
       

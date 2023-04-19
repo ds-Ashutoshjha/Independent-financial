@@ -7,6 +7,7 @@ import {
   StandardFacets,
 } from "@yext/search-ui-react";
 
+
 import { Location } from "../../types/search/locations";
 import LocationCard from "./LocationCard";
 import { AnswersHeadlessProvider } from "@yext/answers-headless-react";
@@ -102,7 +103,7 @@ const SearchLayout = (props: any): JSX.Element => {
             value: {
               lat: params.latitude,
               lng: params.longitude,
-              radius: 100000,
+              radius: 10000000000,
             },
   
             matcher: Matcher.Near,
@@ -335,28 +336,35 @@ const SearchLayout = (props: any): JSX.Element => {
   const [data, setData] = useState([]);
 
   const searchbybranch = () => {
-
-        getCoordinates("branch");
-        useEffect(() => {
-          const apiUrl = '06fd5ba2b2a505cc0d620efe004958a4';
-          const apiKey = 'independent-financial';
-          const filteredApiKey = `branch ${apiKey}`;
-          fetch(apiUrl, {
-            headers: {
-              'Authorization': filteredApiKey,
-              'User-Agent': 'searchlayout',
+    //  let facet: SelectableFilter = {
+    //   selected: true,
+    //   fieldId: "c_searchby",
+    //   value: "Branch",
+    //   matcher: Matcher.Equals,
+    // };
+        // getCoordinates("branch");
+        searchActions.setFilterOption(facet);
+        searchActions.executeVerticalQuery()
+      //   useEffect(() => {
+      //     const apiUrl = '06fd5ba2b2a505cc0d620efe004958a4';
+      //     const apiKey = 'independent-financial';
+      //     const filteredApiKey = `branch ${apiKey}`;
+      //     fetch(apiUrl, {
+      //       headers: {
+      //         'Authorization': filteredApiKey,
+      //         'User-Agent': 'searchlayout',
               
-            }
-          })
-          .then(response => response.json())
-          .then(data => setData(data))
-          .catch(error => console.error(error));
-      }, []);
-      return (
-        <div>
-          {filteredApiKey}
-        </div>
-      );
+      //       }
+      //     })
+      //     .then(response => response.json())
+      //     .then(data => setData(data))
+      //     .catch(error => console.error(error));
+      // }, []);
+      // return (
+      //   <div>
+      //     {filteredApiKey}
+      //   </div>
+      // );
     }
 
     
@@ -365,7 +373,15 @@ const SearchLayout = (props: any): JSX.Element => {
  
 
   const searchbyatm = () => {
-    getCoordinates("atm");
+    let facet: SelectableFilter = {
+      selected: true,
+      fieldId: "c_searchby",
+      value: "ATM",
+      matcher: Matcher.Equals,
+    };
+        // getCoordinates("branch");
+        searchActions.setFilterOption(facet);
+        searchActions.executeVerticalQuery()
 
   
 
@@ -525,78 +541,7 @@ const SearchLayout = (props: any): JSX.Element => {
               
       
             </div>
-            <div className="search-field">
-              {/* <FilterSearch
-              ref={filterRef}
-              displaymsg={displaymsg}
-              setDisplaymsg={setDisplaymsg}
-              customCssClasses={{
-                filterSearchContainer: "m-2 w-full",
-                inputElement: "FilterSearchInput pr-[90px]",
-                optionsContainer: "options",
-              }}
-              inputvalue={inputvalue}
-              setSearchInputValue={setInputValue}
-              params={params1}
-              searchOnSelect={true}
-              searchFields={[
-                // {
-                //   entityType: "location",
-                //   fieldApiName: "address.line1",
-                // },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.postalCode",
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "name",
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.city",
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.region",
-                },
-                // {
-                //   entityType: "location",
-                //   fieldApiName: "address.countryCode",
-
-                // },
-              ]}
-              handleInputValue={handleInputValue}
-              handleSetUserShareLocation={handleSetUserShareLocation}
-            />
-
-              {/* <input
-                id="pac-input"
-                type="text"
-                ref={inputRef}
-                placeholder="Enter postal code, city ..."
-                className="text-sm outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 search_input FilterSearchInput pac-target-input"
-                onChange={() => Findinput2()}
-                onKeyDown={(evt) => {
-                  if (
-                    evt.key === "Backspace" ||
-                    evt.key === "x" ||
-                    evt.key === "Delete"
-                  ) {
-                    Findinput2();
-                  }
-                }}
-              /> */}
-
-              {/* <button
-                className="search-btn"
-                aria-label="Search bar icon"
-                id="search-location-button"
-                onClick={Findinput}
-              >
-                <span dangerouslySetInnerHTML={{ __html: search_icn }} />
-              </button> */}
-            </div>
+           
 
             <div className="search-field">
               {/* <FilterSearch
@@ -755,7 +700,7 @@ const SearchLayout = (props: any): JSX.Element => {
                 ) : (
                   ""
                 )}
-                {/* <div className="button-bx">
+                <div className="button-bx">
                   <ViewMore
                     className={
                       " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
@@ -763,14 +708,14 @@ const SearchLayout = (props: any): JSX.Element => {
                     idName={"view-more-button"}
                     buttonLabel={"View More"}
                   />
-                </div> */}
+                </div>
 
                   {/* <ViewMore
                 className={"button view-more"}
                 idName={"view-more-button"}
                 buttonLabel={"Load More"}
               /> */}
-
+{
               <Pagination
                 customCssClasses={{
                   paginationContainer: "pagination-conatiner",
@@ -778,7 +723,7 @@ const SearchLayout = (props: any): JSX.Element => {
                   rightIconContainer: "right-container",
                   selectedLabel: "selectedLabel"
                 }}
-                />
+                /> }
               </div>
             </PerfectScrollbar>
           </div>

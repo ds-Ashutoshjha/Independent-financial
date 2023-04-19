@@ -262,6 +262,7 @@ export default function InputDropdown({
         setNorecord(false);
         setDisplaymsg(false);
         setLatestUserInput("");
+        searchActions.resetFacets();
         if (keyUpStatus) {
           // searchActions.setVertical("");
           

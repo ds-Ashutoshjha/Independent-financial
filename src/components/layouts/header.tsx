@@ -1,15 +1,16 @@
 import React from "react";
 
 type data = {
-  c_headerLogo: any;
-  c_headerTopMenus: any;
-  c_headerMainMenus: any;
+  // c_headerLogo: any;
+  // c_headerTopMenus: any;
+  // c_headerMainMenus: any;
+  header:any;
 };
 
 const Header = (props: data) => {
-  const { c_headerLogo, c_headerTopMenus, c_headerMainMenus } = props;
+  // const { c_headerLogo, c_headerTopMenus, c_headerMainMenus } = props;
 
- 
+  const { header } = props;
 
   return (
     <>
@@ -24,14 +25,14 @@ const Header = (props: data) => {
                       <a className="Header-logoLink" href="#">
                         <img
                           className="Header-logoImage"
-                          src={c_headerLogo.url}
+                          src={header?.c_headerLogo.url}
                           alt=""
                         />
                       </a>
                     </div>
                     <div className="flex gap-6">
                       
-                          {c_headerTopMenus.topMenu?.map((data: any) => {
+                          {header?.c_headerTopMenus.topMenu?.map((data: any) => {
                             return (
                               <>
                                <div> <a className="Header-link--top">
@@ -51,7 +52,7 @@ const Header = (props: data) => {
                  
                     <div className="flex gap-11 ml-[44%]">
                       
-                          {c_headerMainMenus?.mainMenu.map((data: any) => {
+                          {header?.c_headerMainMenus?.mainMenu.map((data: any) => {
                             return <>
                             <div >
                               <a target="_blank" href={data?.link}>
