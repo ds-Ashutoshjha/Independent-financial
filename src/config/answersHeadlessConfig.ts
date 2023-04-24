@@ -13,7 +13,7 @@ export const AnswerExperienceConfig = {
   verticalKey : "locations",
   experienceKey : "independent-financial",
   experienceVersion: "STAGING",
-  locationRadius: 100000,
+  locationRadius: 10000000000,
   sessionTrackingEnabled: true,
   endpoints: {
     universalSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/query",

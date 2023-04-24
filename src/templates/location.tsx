@@ -100,6 +100,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
       "dm_directoryParents.meta.entityType",
+      
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -926,6 +927,15 @@ console.log('c_featureSection', c_featureSection)
                 <div className="sec-title">
                   <h2 className="">{StaticData.NearStoretext}</h2>
                 </div>
+
+                {/* <Faq
+              prop={c_relatedFAQs}
+              faq_title={c_frequentlyAskedQuestionsTitle}
+              faq_description={c_fAQsDescription}
+            /> */}
+
+
+
                 <div className="nearby-sec-inner">
                   {yextDisplayCoordinate ||
                   cityCoordinate ||

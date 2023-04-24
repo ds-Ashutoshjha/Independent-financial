@@ -133,7 +133,7 @@ const SearchLayout = (props: any): JSX.Element => {
       value: {
         lat: params1.latitude,
         lng: params1.longitude,
-        radius: 100000,
+        radius: 100000000,
       },
 
       matcher: Matcher.Near,
@@ -336,12 +336,12 @@ const SearchLayout = (props: any): JSX.Element => {
   const [data, setData] = useState([]);
 
   const searchbybranch = () => {
-    //  let facet: SelectableFilter = {
-    //   selected: true,
-    //   fieldId: "c_searchby",
-    //   value: "Branch",
-    //   matcher: Matcher.Equals,
-    // };
+     let facet: SelectableFilter = {
+      selected: true,
+      fieldId: "c_searchby",
+      value: "Branch",
+      matcher: Matcher.Equals,
+    };
         // getCoordinates("branch");
         searchActions.setFilterOption(facet);
         searchActions.executeVerticalQuery()
