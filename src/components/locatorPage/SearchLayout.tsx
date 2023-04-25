@@ -83,7 +83,7 @@ const SearchLayout = (props: any): JSX.Element => {
   var target;
 
   var firstTimeRunners = true;
- 
+
 
   const FirstLoad = () => {
     setCheck(true);
@@ -105,10 +105,10 @@ const SearchLayout = (props: any): JSX.Element => {
               lng: params.longitude,
               radius: 10000000000,
             },
-  
+
             matcher: Matcher.Near,
           };
-  
+
           searchActions.setOffset(0)
           searchActions.setStaticFilters([locationFilter]);
           searchActions.setUserLocation(params1);
@@ -336,215 +336,195 @@ const SearchLayout = (props: any): JSX.Element => {
   const [data, setData] = useState([]);
 
   const searchbybranch = () => {
-     let facet: SelectableFilter = {
+    let facet: SelectableFilter = {
       selected: true,
       fieldId: "c_searchby",
       value: "Branch",
       matcher: Matcher.Equals,
+     
     };
-        // getCoordinates("branch");
-        searchActions.setFilterOption(facet);
-        searchActions.executeVerticalQuery()
-      //   useEffect(() => {
-      //     const apiUrl = '06fd5ba2b2a505cc0d620efe004958a4';
-      //     const apiKey = 'independent-financial';
-      //     const filteredApiKey = `branch ${apiKey}`;
-      //     fetch(apiUrl, {
-      //       headers: {
-      //         'Authorization': filteredApiKey,
-      //         'User-Agent': 'searchlayout',
-              
-      //       }
-      //     })
-      //     .then(response => response.json())
-      //     .then(data => setData(data))
-      //     .catch(error => console.error(error));
-      // }, []);
-      // return (
-      //   <div>
-      //     {filteredApiKey}
-      //   </div>
-      // );
-    }
-
-    
-
-
- 
-
-  const searchbyatm = () => {
-    let facet: SelectableFilter = {
-      selected: true,
-      fieldId: "c_searchby",
-      value: "ATM",
-      matcher: Matcher.Equals,
-    };
-        // getCoordinates("branch");
-        searchActions.setFilterOption(facet);
-        searchActions.executeVerticalQuery()
-
-  
-
+    searchActions.setFilterOption(facet);
+    searchActions.executeVerticalQuery()
   };
+    // getCoordinates("branch");
+   
 
-  const [autocomplete, setAutocomplete] =
-    useState<google.maps.places.Autocomplete>();
 
-  useEffect(() => {
-    if (googleLib && typeof google.maps === "object") {
-      let pacInput: any = document?.getElementById("pac-input");
-      let options: any = {
-        options: {
-          types: ["geocode"],
-          componentRestrictions: { country: "USA" },
-          strictBounds: false,
-          fields: ["address_components", "geometry", "icon", "name"],
-        },
+
+
+    const searchbyatm = () => {
+      let facet: SelectableFilter = {
+        selected: true,
+        fieldId: "c_searchby",
+        value: "ATM",
+        matcher: Matcher.Equals,
       };
-      const autoComplete = new google.maps.places.Autocomplete(
-        pacInput,
-        options
-      );
-      if (autoComplete) {
-        function pacSelectFirst(input: HTMLInputElement) {
-          var _addEventListener = input?.addEventListener;
+      // getCoordinates("branch");
+      searchActions.setFilterOption(facet);
+      searchActions.executeVerticalQuery()
 
-          function addEventListenerWrapper(type: string, listener: any) {
-            if (type == "keydown") {
-              var orig_listener = listener;
 
-              listener = function (event: { which: number }) {
-                var suggestion_selected = $(".pac-item-selected").length > 0;
 
-                if (
-                  (event.which == 13 || event.which == 9) &&
-                  !suggestion_selected
-                ) {
-                  var simulated_downarrow = $.Event("keydown", {
-                    keyCode: 40,
-                    which: 40,
-                  });
-                  orig_listener.apply(input, [simulated_downarrow]);
-                }
-
-                orig_listener.apply(input, [event]);
-              };
-            }
-
-            _addEventListener.apply(input, [type, listener]);
-          }
-
-          if (input?.addEventListener) {
-            input.addEventListener = addEventListenerWrapper;
-          }
-        }
-
-        setAutocomplete(autoComplete);
-        pacSelectFirst(pacInput);
-        $("#search-location-button")
-          .off("click")
-          .on("click", function () {
-            var keydown = document.createEvent("HTMLEvents");
-            keydown.initEvent("keydown", true, false);
-            Object.defineProperty(keydown, "keyCode", {
-              get: function () {
-                return 13;
-              },
-            });
-            Object.defineProperty(keydown, "which", {
-              get: function () {
-                return 13;
-              },
-            });
-            pacInput.dispatchEvent(keydown);
-          });
-
-        google.maps.event.addListener(
-          autoComplete,
-          "place_changed",
-          function () {
-            const searchKey: any = pacInput.value;
-            if (searchKey) {
-              getCoordinates(searchKey);
-            }
-          }
-        );
-      }
-    }
-    return () => {
-      if (autocomplete) {
-        autocomplete.unbindAll();
-      }
     };
-  }, [googleLib]);
-  
 
-  return (
-    <>
-      <Wrapper
-        apiKey={googleMapsConfig.googleMapsApiKey}
-        libraries={["places", "geometry"]}
-      >
-        {/* {loader} */}
+    const [autocomplete, setAutocomplete] =
+      useState<google.maps.places.Autocomplete>();
 
-       
-       
-        <div className="breadcrumb">
-          <div className="container-custom">
-            <ul>
-              <li>
-                <a href="#" className="home">
-                  {" "}
-                  Home
-                </a>
-              </li>
-              <li>{StaticData.locator_breadcrumb}</li>
-            </ul>
-          </div>
-        </div>
-        <div className="locator-main">
-          {allowlocation.length > 0 ? (
-            <div className="for-allow">{allowlocation}</div>
-          ) : (
-            ""
-          )}
+    useEffect(() => {
+      if (googleLib && typeof google.maps === "object") {
+        let pacInput: any = document?.getElementById("pac-input");
+        let options: any = {
+          options: {
+            types: ["geocode"],
+            componentRestrictions: { country: "USA" },
+            strictBounds: false,
+            fields: ["address_components", "geometry", "icon", "name"],
+          },
+        };
+        const autoComplete = new google.maps.places.Autocomplete(
+          pacInput,
+          options
+        );
+        if (autoComplete) {
+          function pacSelectFirst(input: HTMLInputElement) {
+            var _addEventListener = input?.addEventListener;
 
-          <div className="search-bx">
-            <div className="location-with-filter">
-              <h1 className="">{StaticData.FindLocationtext}</h1>
+            function addEventListenerWrapper(type: string, listener: any) {
+              if (type == "keydown") {
+                var orig_listener = listener;
+
+                listener = function (event: { which: number }) {
+                  var suggestion_selected = $(".pac-item-selected").length > 0;
+
+                  if (
+                    (event.which == 13 || event.which == 9) &&
+                    !suggestion_selected
+                  ) {
+                    var simulated_downarrow = $.Event("keydown", {
+                      keyCode: 40,
+                      which: 40,
+                    });
+                    orig_listener.apply(input, [simulated_downarrow]);
+                  }
+
+                  orig_listener.apply(input, [event]);
+                };
+              }
+
+              _addEventListener.apply(input, [type, listener]);
+            }
+
+            if (input?.addEventListener) {
+              input.addEventListener = addEventListenerWrapper;
+            }
+          }
+
+          setAutocomplete(autoComplete);
+          pacSelectFirst(pacInput);
+          $("#search-location-button")
+            .off("click")
+            .on("click", function () {
+              var keydown = document.createEvent("HTMLEvents");
+              keydown.initEvent("keydown", true, false);
+              Object.defineProperty(keydown, "keyCode", {
+                get: function () {
+                  return 13;
+                },
+              });
+              Object.defineProperty(keydown, "which", {
+                get: function () {
+                  return 13;
+                },
+              });
+              pacInput.dispatchEvent(keydown);
+            });
+
+          google.maps.event.addListener(
+            autoComplete,
+            "place_changed",
+            function () {
+              const searchKey: any = pacInput.value;
+              if (searchKey) {
+                getCoordinates(searchKey);
+              }
+            }
+          );
+        }
+      }
+      return () => {
+        if (autocomplete) {
+          autocomplete.unbindAll();
+        }
+      };
+    }, [googleLib]);
+
+
+    return (
+      <>
+        <Wrapper
+          apiKey={googleMapsConfig.googleMapsApiKey}
+          libraries={["places", "geometry"]}
+        >
+          {/* {loader} */}
+
+
+
+          <div className="breadcrumb">
+            <div className="container-custom">
+              <ul>
+                <li>
+                  <a href="#" className="home">
+                    {" "}
+                    Home
+                  </a>
+                </li>
+                <li>{StaticData.locator_breadcrumb}</li>
+              </ul>
             </div>
-            <div className="loBtn flex">
-                       {/* <StandardFacets
+          </div>
+          <div className="locator-main">
+            {allowlocation.length > 0 ? (
+              <div className="for-allow">{allowlocation}</div>
+            ) : (
+              ""
+            )}
+
+            <div className="search-bx">
+              <div className="location-with-filter">
+                <h1 className="">{StaticData.FindLocationtext}</h1>
+              </div>
+              <div className="loBtn flex">
+                {/* <StandardFacets
           customCssClasses={{ container: "filter-items" }}
           defaultExpanded={true}
           
 ></StandardFacets> */}
 
 
-  {c_locatorButton.map((data: any, index: number) => {
-                return (
-                  <>
-                    <a
-                      onClick={index == 0 ? searchbybranch : searchbyatm}
-                      href="javascript:void(0)"
-                      className={index == 0 ? 'Link button-red cursor-pointer mr-2 searchbranch' : 'Link button-red cursor-pointer mr-2 searchatm'}
-                      type="button"
-                      style={{ unicodeBidi: "bidi-override", direction: "ltr" }}
-                    >
-                      {data?.label}
-                    </a>
-                  </>
-                );
-              })} 
-           
-               
-              
-      
-            </div>
-           
+                {c_locatorButton.map((data: any, index: number) => {
+                  return (
+                    <>
+                      <a
+                        onClick={index == 0 ? searchbybranch : searchbyatm}
+                        href="javascript:void(0)"
+                        className={index == 0 ? 'Link button-red cursor-pointer mr-2 searchbranch' : 'Link button-red cursor-pointer mr-2 searchatm'}
+                        type="button"
+                        style={{ unicodeBidi: "bidi-override", direction: "ltr" }}
+                      >
+                        {data?.label}
+                      </a>
+                    </>
+                  );
+                })}
 
-            <div className="search-field">
-              {/* <FilterSearch
+
+
+
+              </div>
+
+
+              <div className="search-field">
+                {/* <FilterSearch
               ref={filterRef}
               displaymsg={displaymsg}
               setDisplaymsg={setDisplaymsg}
@@ -587,150 +567,151 @@ const SearchLayout = (props: any): JSX.Element => {
               handleSetUserShareLocation={handleSetUserShareLocation}
             /> */}
 
-              <input
-                id="pac-input"
-                type="text"
-                ref={inputRef}
-                placeholder="Enter postal code, city ..."
-                className="text-sm outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 search_input FilterSearchInput pac-target-input"
-                onChange={() => Findinput2()}
-                onKeyDown={(evt) => {
-                  if (
-                    evt.key === "Backspace" ||
-                    evt.key === "x" ||
-                    evt.key === "Delete"
-                  ) {
-                    Findinput2();
-                  }
-                }}
-              />
-
-              <button
-                className="search-btn"
-                aria-label="Search bar icon"
-                id="search-location-button"
-                onClick={Findinput}
-              >
-                <span dangerouslySetInnerHTML={{ __html: search_icn }} />
-              </button>
-            </div>
-
-
-            <div className="fliter-sec">
-              <button
-                className="useMyLocation"
-                title="Search using your current location!"
-                id="useLocation"
-                onClick={onClick}
-              >
-                <span
-                  className="icon"
-                  dangerouslySetInnerHTML={{ __html: UseMylocationsvg }}
-                />
-
-                <span className="underline hover:no-underline">
-                  {" "}
-                  {StaticData.Usemylocation}
-                </span>
-              </button>
-
-              <ResultsCount
-                customCssClasses={{ container: "mx-2 my-0 text-white" }}
-              />
-            </div>
-          </div>
-    
-          <div className="mobile-btns">
-            <div className="button-bx">
-              <a
-                className="btn listBtn"
-                href="javascript:void(0);"
-                onClick={() => {
-                  document.body.classList.remove("mapView");
-                }}
-              >
-                {" "}
-                List View
-              </a>
-              <a
-                className="btn mapBtn"
-                href="javascript:void(0);"
-                onClick={addClass}
-              >
-                {" "}
-                Map View
-              </a>
-            </div>
-          </div>
-          <div className=" map-section ">
-            <GoogleMaps
-              apiKey={googleApikey}
-              centerLatitude={centerLatitude}
-              centerLongitude={centerLongitude}
-              check={true}
-              defaultZoom={mapzoom}
-              showEmptyMap={true}
-            />
-          </div>
-
-          <div className="left-listing">
-            <PerfectScrollbar>
-              <div>
-                <VerticalResults
-                  displayAllOnNoResults={false}
-                  CardComponent={LocationCard}
-                  locationResults={locationinbuit}
-                  customCssClasses={{
-                    container:
-                      "result-list flex flex-col scroll-smooth  overflow-auto",
-                  }}
-                  // CardComponent={LocationCard}
-                />
-
-                {locationinbuit && locationinbuit.length <= 0 ? (
-                  <div className="browse-dir">
-                    <a className="underline " href="/gb.html">
-                      Use the search above or{" "}
-                      <span className="font-second-main-font">
-                        {" "}
-                        browse our directory
-                      </span>
-                    </a>
-                  </div>
-                ) : (
-                  ""
-                )}
-                <div className="button-bx">
-                  <ViewMore
-                    className={
-                      " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
+                <input
+                  id="pac-input"
+                  type="text"
+                  ref={inputRef}
+                  placeholder="Enter postal code, city ..."
+                  className="text-sm outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 search_input FilterSearchInput pac-target-input"
+                  onChange={() => Findinput2()}
+                  onKeyDown={(evt) => {
+                    if (
+                      evt.key === "Backspace" ||
+                      evt.key === "x" ||
+                      evt.key === "Delete"
+                    ) {
+                      Findinput2();
                     }
-                    idName={"view-more-button"}
-                    buttonLabel={"View More"}
+                  }}
+                />
+
+                <button
+                  className="search-btn"
+                  aria-label="Search bar icon"
+                  id="search-location-button"
+                  onClick={Findinput}
+                >
+                  <span dangerouslySetInnerHTML={{ __html: search_icn }} />
+                </button>
+              </div>
+
+
+              <div className="fliter-sec">
+                <button
+                  className="useMyLocation"
+                  title="Search using your current location!"
+                  id="useLocation"
+                  onClick={onClick}
+                >
+                  <span
+                    className="icon"
+                    dangerouslySetInnerHTML={{ __html: UseMylocationsvg }}
                   />
-                </div>
+
+                  <span className="underline hover:no-underline">
+                    {" "}
+                    {StaticData.Usemylocation}
+                  </span>
+                </button>
+
+                <ResultsCount
+                  customCssClasses={{ container: "mx-2 my-0 text-white" }}
+                />
+              </div>
+            </div>
+
+            <div className="mobile-btns">
+              <div className="button-bx">
+                <a
+                  className="btn listBtn"
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    document.body.classList.remove("mapView");
+                  }}
+                >
+                  {" "}
+                  List View
+                </a>
+                <a
+                  className="btn mapBtn"
+                  href="javascript:void(0);"
+                  onClick={addClass}
+                >
+                  {" "}
+                  Map View
+                </a>
+              </div>
+            </div>
+            <div className=" map-section ">
+              <GoogleMaps
+                apiKey={googleApikey}
+                centerLatitude={centerLatitude}
+                centerLongitude={centerLongitude}
+                check={true}
+                defaultZoom={mapzoom}
+                showEmptyMap={true}
+              />
+            </div>
+
+            <div className="left-listing">
+              <PerfectScrollbar>
+                <div>
+                  <VerticalResults
+                    displayAllOnNoResults={false}
+                    CardComponent={LocationCard}
+                    locationResults={locationinbuit}
+                    customCssClasses={{
+                      container:
+                        "result-list flex flex-col scroll-smooth  overflow-auto",
+                    }}
+                  // CardComponent={LocationCard}
+                  />
+
+                  {locationinbuit && locationinbuit.length <= 0 ? (
+                    <div className="browse-dir">
+                      <a className="underline " href="/gb.html">
+                        Use the search above or{" "}
+                        <span className="font-second-main-font">
+                          {" "}
+                          browse our directory
+                        </span>
+                      </a>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="button-bx">
+                    <ViewMore
+                      className={
+                        " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
+                      }
+                      idName={"view-more-button"}
+                      buttonLabel={"View More"}
+                    />
+                  </div>
 
                   {/* <ViewMore
                 className={"button view-more"}
                 idName={"view-more-button"}
                 buttonLabel={"Load More"}
               /> */}
-{
-              <Pagination
-                customCssClasses={{
-                  paginationContainer: "pagination-conatiner",
-                  leftIconContainer: "left-container",
-                  rightIconContainer: "right-container",
-                  selectedLabel: "selectedLabel"
-                }}
-                /> }
-              </div>
-            </PerfectScrollbar>
+                  {
+                    <Pagination
+                      customCssClasses={{
+                        paginationContainer: "pagination-conatiner",
+                        leftIconContainer: "left-container",
+                        rightIconContainer: "right-container",
+                        selectedLabel: "selectedLabel"
+                      }}
+                    />}
+                </div>
+              </PerfectScrollbar>
+            </div>
           </div>
-        </div>
-      </Wrapper>
-    </>
-  );
-};
+        </Wrapper>
+      </>
+    );
+  
+}
 
-export default SearchLayout;
+  export default SearchLayout
