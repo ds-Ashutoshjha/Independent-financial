@@ -504,7 +504,7 @@ console.log('c_featureSection', c_featureSection)
       >
         {" "}
         <AnalyticsScopeProvider name={""}>
-          <PageLayout global={_site}>
+          <PageLayout _site={_site}>
             {/* {console.log('global', _site)} */}
             {/* {c_lobbyHour} */}
             {/* {c_locationBannerSection} */}

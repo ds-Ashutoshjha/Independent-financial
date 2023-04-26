@@ -7,7 +7,7 @@ import Nav from "./Nav";
 type Props = {
     title?: string;
     _site?: any;
-    global:any;
+    // global:any;
     children?: React.ReactNode;
     
 };
@@ -15,18 +15,20 @@ type Props = {
   const PageLayout = ({
     title,
     _site,
-    global,
+    // global,
     children,
   
   }: Props) => {
+    
 
+// console.log("global",global);
     return (
         <>
         {/* <Header c_headerLogo ={global?.c_headerLogo} c_headerTopMenus ={global?.c_headerTopMenus} c_headerMainMenus = {global?.c_headerMainMenus}/> */}
       
-      <Header header ={global}/>
+      <Header header ={_site}/>
                 {children}
-                <Footer footer={global} /> 
+                <Footer footer={_site} /> 
       
         </>
     );

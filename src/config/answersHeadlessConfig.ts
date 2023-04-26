@@ -7,13 +7,13 @@ export const googleMapsConfig =  {
 }; 
 
 export const AnswerExperienceConfig = {
-  limit:2,
+  limit:5,
   locale: "en",
   apiKey : "06fd5ba2b2a505cc0d620efe004958a4",
   verticalKey : "locations",
   experienceKey : "independent-financial",
   experienceVersion: "STAGING",
-  locationRadius: 10000000,
+  locationRadius: 100000,
   sessionTrackingEnabled: true,
   endpoints: {
     universalSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/query",
