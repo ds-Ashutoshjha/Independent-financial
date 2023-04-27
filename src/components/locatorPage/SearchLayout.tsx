@@ -336,14 +336,7 @@ const SearchLayout = (props: any): JSX.Element => {
   const [data, setData] = useState([]);
 
   const searchbybranch = () => {
-    let facet: SelectableFilter = {
-      selected: true,
-      fieldId: "c_searchby",
-      value: "Branch",
-      matcher: Matcher.Equals,
-     
-    };
-    searchActions.setFilterOption(facet);
+    searchActions.setVertical('locations')
     searchActions.executeVerticalQuery()
   };
     // getCoordinates("branch");
@@ -353,18 +346,16 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
     const searchbyatm = () => {
-      let facet: SelectableFilter = {
-        selected: true,
-        fieldId: "c_searchby",
-        value: "ATM",
-        matcher: Matcher.Equals,
-      };
+      // let facet: SelectableFilter = {
+      //   selected: true,
+      //   fieldId: "c_searchby",
+      //   value: "ATM",
+      //   matcher: Matcher.Equals,
+      // };
       // getCoordinates("branch");
-      searchActions.setFilterOption(facet);
+      // searchActions.setStaticFilters([facet]);
+      searchActions.setVertical('atms')
       searchActions.executeVerticalQuery()
-
-
-
     };
 
     const [autocomplete, setAutocomplete] =
