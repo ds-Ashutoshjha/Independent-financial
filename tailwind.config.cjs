@@ -13,7 +13,7 @@ module.exports = {
       'black': '#000000',
       'Dark-red': '#d34d38',
       'gray': '#383838',
-      'hover-btn': '#017195',
+      'hover-btn': '#d34d38',
       'footer-bg': '#1e293e',
       'red': '#d34d38',
       'red-eb': '#d34d38',

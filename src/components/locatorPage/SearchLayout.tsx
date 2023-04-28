@@ -103,7 +103,7 @@ const SearchLayout = (props: any): JSX.Element => {
             value: {
               lat: params.latitude,
               lng: params.longitude,
-              radius: 10000000000,
+              radius: 10000000000000000000000,
             },
 
             matcher: Matcher.Near,
@@ -133,7 +133,7 @@ const SearchLayout = (props: any): JSX.Element => {
       value: {
         lat: params1.latitude,
         lng: params1.longitude,
-        radius: 100000000,
+        radius: 10000000000000000000,
       },
 
       matcher: Matcher.Near,
@@ -334,6 +334,7 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   };
   const [data, setData] = useState([]);
+  //yaha pe search configuration me 
 
   const searchbybranch = () => {
     searchActions.setVertical('locations')
@@ -346,14 +347,14 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
     const searchbyatm = () => {
-      // let facet: SelectableFilter = {
-      //   selected: true,
-      //   fieldId: "c_searchby",
-      //   value: "ATM",
-      //   matcher: Matcher.Equals,
-      // };
-      // getCoordinates("branch");
-      // searchActions.setStaticFilters([facet]);
+      let facet: SelectableFilter = {
+        selected: true,
+        fieldId: "c_searchby",
+        value: "ATM",
+        matcher: Matcher.Equals,
+      };
+      getCoordinates("branch");
+      searchActions.setStaticFilters([facet]);
       searchActions.setVertical('atms')
       searchActions.executeVerticalQuery()
     };
