@@ -347,14 +347,14 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
     const searchbyatm = () => {
-      let facet: SelectableFilter = {
-        selected: true,
-        fieldId: "c_searchby",
-        value: "ATM",
-        matcher: Matcher.Equals,
-      };
-      getCoordinates("branch");
-      searchActions.setStaticFilters([facet]);
+      // let facet: SelectableFilter = {
+      //   selected: true,
+      //   fieldId: "c_searchby",
+      //   value: "ATM",
+      //   matcher: Matcher.Equals,
+      // };
+      // getCoordinates("branch");
+      // searchActions.setStaticFilters([facet]);
       searchActions.setVertical('atms')
       searchActions.executeVerticalQuery()
     };

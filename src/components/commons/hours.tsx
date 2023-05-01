@@ -313,7 +313,7 @@ const DayRow = (props: DayRow) => {
         </td>
       ) : (
         <td className="dayName" key={key}>
-          <span className="checked"></span> {dayName}
+          <span className="checked"></span> {dayName.slice(0,3)}
         </td>
       )}
 
