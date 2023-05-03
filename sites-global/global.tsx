@@ -1,4 +1,5 @@
-export const stagingBaseurl = "https://master-loosely--total--bobcat-sbx-pgsdemo-com.sbx.preview.pagescdn.com/";
+// export const stagingBaseurl = "https://master-loosely--total--bobcat-sbx-pgsdemo-com.sbx.preview.pagescdn.com/";
+export const stagingBaseurl = "https://main-always--identical--tapir-sbx-pgsdemo-com.sbx.preview.pagescdn.com/";
 export const cookieText =
   " We use cookies on our website. Some are essential to enable to site to function, others are analytical and help us monitor site usage, whilst some are used for the personalisation of ads. You are free to manage this via your browser setting at any time. To learn more about how we use these cookies, please see our ";
 export const cookiesUrl = "https://www.matalan.co.uk/corporate/cookies";
