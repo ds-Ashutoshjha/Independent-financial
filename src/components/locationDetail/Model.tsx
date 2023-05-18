@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
-import Modal from "react-modal";
+import * as ReactModal from "react-modal";
 import { Cross } from "../../../sites-global/global";
 import { StaticData } from "../../../sites-global/staticData";
 import Holidayhours from "./Holdayhours";
@@ -71,7 +71,7 @@ return a.map(format).join(s);
         {props.name}
       </a>
 
-      <Modal
+      <ReactModal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
@@ -89,7 +89,7 @@ return a.map(format).join(s);
 
         {props.holidayHours ? (
           <>
-            <div className="font-bold text-lg  mb-4">{StaticData.Holdiay}</div>
+            <div className="font-bold text-lg  mb-4">{StaticData}</div>
             <div className="pop-up-holyhrs heading">
               <div>Date</div>
 
@@ -102,7 +102,7 @@ return a.map(format).join(s);
         ) : (
           ""
         )}
-      </Modal>
+      </ReactModal>
     </>
   );
 }

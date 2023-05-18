@@ -462,7 +462,7 @@ const Location: Template<ExternalApiRenderData> = ({
     : null;
   console.log(document);
   let bannerimage = c_banner_image && c_banner_image.image.url;
-  console.log("firstbaner", c_testimonialSection);
+  console.log("firstbaner", timezone);
 console.log('c_featureSection', c_featureSection)
   return (
     <>

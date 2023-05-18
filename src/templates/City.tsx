@@ -52,7 +52,8 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
-      "dm_directoryChildren.yextDisplayCoordinate"
+      "dm_directoryChildren.yextDisplayCoordinate",
+      "dm_directoryChildren.timezone",
     ],
     localization: {
       locales: ["en"],
