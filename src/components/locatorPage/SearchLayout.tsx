@@ -147,6 +147,8 @@ const SearchLayout = (props: any): JSX.Element => {
       $("body").removeClass("overflow-hidden");
     }, 3100);
   };
+
+
   const onClick = () => {
     if (navigator.geolocation) {
       const error = (error: any) => {
@@ -163,13 +165,18 @@ const SearchLayout = (props: any): JSX.Element => {
             position.coords.latitude,
             position.coords.longitude
           ).then(
-            (response: any) => {
+              (response: any) => {
               if (response.results[0]) {
-                filterRef.current &&
-                  filterRef.current.setInputValue(
-                    response.results[0].formatted_address
-                  );
-                setallowLocation("");
+
+                filterRef.current && filterRef.current.setInputValue(response.results[0].formatted_address);
+
+                let pacInput: any = document?.getElementById("pac-input");
+                if (pacInput) {
+                  pacInput.value = response.results[0].formatted_address;
+                  pacInput.focus();
+                }
+
+                setallowLocation('');
               }
             },
             (error: any) => {
@@ -590,7 +597,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
               <div className="fliter-sec">
                 <button
-                  className="useMyLocation"
+                  className=""
                   title="Search using your current location!"
                   id="useLocation"
                   onClick={onClick}
@@ -673,13 +680,13 @@ const SearchLayout = (props: any): JSX.Element => {
                     ""
                   )}
                   <div className="button-bx">
-                    <ViewMore
+                    {/* <ViewMore
                       className={
                         " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
                       }
                       idName={"view-more-button"}
                       buttonLabel={"View More"}
-                    />
+                    /> */}
                   </div>
 
                   {/* <ViewMore

@@ -275,65 +275,65 @@ function UnwrappedGoogleMaps({
           center,
           zoom,
           
-          styles: [
-            {
-              featureType: "administrative",
-              elementType: "all",
-              stylers: [
-                {
-                  visibility: "on",
-                  color:"#000000",
+          // styles: [
+          //   {
+          //     featureType: "administrative",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "on",
+          //         color:"#000000",
                   
-                },
-              ],
-            },
-            {
-              featureType: "landscape",
-              elementType: "all",
-              stylers: [
-                {
-                  visibility: "on",
-                  color:"#000000",
-                },
-              ],
-            },
-            {
-              featureType: "water",
-              elementType: "geometry.fill",
-              stylers: [
-                {
-                  color: "#e8e8e8",
-                },
-              ],
-            },
-            {
-              featureType: "landscape",
-              elementType: "gecometry.fill",
-              stylers: [
-                {
-                  color:"#f5f5f5",
-                },
-              ],
-            },
-            {
-              featureType: "poi",
-              elementType: "all",
-              stylers: [
-                {
-                  visibility: "off",
-                },
-              ],
-            },
-            {
-              featureType: "transit",
-              elementType: "all",
-              stylers: [
-                {
-                  visibility: "off",
-                },
-              ],
-            },
-          ],
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "landscape",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "on",
+          //         color:"#000000",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "water",
+          //     elementType: "geometry.fill",
+          //     stylers: [
+          //       {
+          //         color: "#e8e8e8",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "landscape",
+          //     elementType: "gecometry.fill",
+          //     stylers: [
+          //       {
+          //         color:"#f5f5f5",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "poi",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "off",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "transit",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "off",
+          //       },
+          //     ],
+          //   },
+          // ],
           ...providerOptions,
         })
       );
