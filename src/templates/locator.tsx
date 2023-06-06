@@ -48,6 +48,7 @@ import Footer from "../components/layouts/footer";
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `/index.html`;
+  // return "locator";
 };
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
