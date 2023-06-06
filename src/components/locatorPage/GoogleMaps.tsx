@@ -82,7 +82,7 @@ export function GoogleMaps(props: GoogleMapsProps) {
   return (
     <div>
       {/* <Wrapper apiKey={props.apiKey}> */}
-        <UnwrappedGoogleMaps {...props} />
+      <UnwrappedGoogleMaps {...props} />
       {/* </Wrapper> */}
     </div>
   );
@@ -102,7 +102,7 @@ function UnwrappedGoogleMaps({
   const [downinfo, setDownInfo] = useState(true);
   const [hover, setHover] = useState(true);
   const loading = useSearchState((s) => s.searchStatus.isLoading);
- 
+
   let isHover = true;
   const searchZoom: number | number | null | undefined = null;
   let currentMapZoom: number | undefined = 0;
@@ -125,21 +125,21 @@ function UnwrappedGoogleMaps({
 
   locationResults.length > 0
     ? locationResults.map((result: any, i: number) => {
-        if (i == 0 && result) {
-          center = {
-            lat: result.rawData.yextDisplayCoordinate
-              ? result.rawData.yextDisplayCoordinate.latitude
-              : result.rawData.displayCoordinate.latitude,
-            lng: result.rawData.yextDisplayCoordinate
-              ? result.rawData.yextDisplayCoordinate.longitude
-              : result.rawData.displayCoordinate.longitude,
-          };
-        }
-      })
+      if (i == 0 && result) {
+        center = {
+          lat: result.rawData.yextDisplayCoordinate
+            ? result.rawData.yextDisplayCoordinate.latitude
+            : result.rawData.displayCoordinate.latitude,
+          lng: result.rawData.yextDisplayCoordinate
+            ? result.rawData.yextDisplayCoordinate.longitude
+            : result.rawData.displayCoordinate.longitude,
+        };
+      }
+    })
     : (center = {
-        lat: centerLatitude,
-        lng: centerLongitude,
-      });
+      lat: centerLatitude,
+      lng: centerLongitude,
+    });
 
   let info = false;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -218,7 +218,7 @@ function UnwrappedGoogleMaps({
     if (mapMarkerClusterer) {
       mapMarkerClusterer.clearMarkers();
     }
-  } catch (e) {}
+  } catch (e) { }
   let i = 0;
   for (const result of locationResults) {
     i++;
@@ -271,10 +271,10 @@ function UnwrappedGoogleMaps({
     if (ref.current && !map) {
       setMap(
         new window.google.maps.Map(ref.current, {
-          
+
           center,
           zoom,
-          
+
           // styles: [
           //   {
           //     featureType: "administrative",
@@ -283,7 +283,7 @@ function UnwrappedGoogleMaps({
           //       {
           //         visibility: "on",
           //         color:"#000000",
-                  
+
           //       },
           //     ],
           //   },
@@ -508,7 +508,7 @@ function UnwrappedGoogleMaps({
                 }
                 document
                   .querySelectorAll(".result")
-                  [index].classList.add("fixed-hover");
+                [index].classList.add("fixed-hover");
                 addActiveGrid(index);
                 const position = {
                   lat: result.rawData.yextDisplayCoordinate
@@ -546,7 +546,7 @@ function UnwrappedGoogleMaps({
     let countrycode = `${result.rawData.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
     let statecode = `${result.rawData.address?.region?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
     let citycode = `${result.rawData?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
-     url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}.html`;
+    url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}.html`;
 
     const MarkerContent = (
       <>
